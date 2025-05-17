@@ -55,11 +55,7 @@ StaticCallCounter::Result StaticCallCounter::runOnModule(Module &M) {
 
         // We have a direct function call - update the count for the function
         // being called.
-        auto CallCount = Res.find(DirectInvoc);
-        if (Res.end() == CallCount) {
-          CallCount = Res.insert(std::make_pair(DirectInvoc, 0)).first;
-        }
-        ++CallCount->second;
+        Res[DirectInvoc]++;
       }
     }
   }

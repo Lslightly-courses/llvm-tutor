@@ -99,7 +99,7 @@ bool MergeBB::canMergeInstructions(ArrayRef<Instruction *> Insts) {
   assert(Inst2->getNumOperands() == Inst1->getNumOperands());
   auto NumOpnds = Inst1->getNumOperands();
   for (unsigned OpndIdx = 0; OpndIdx != NumOpnds; ++OpndIdx) {
-    if (Inst2->getOperand(OpndIdx) != Inst1->getOperand(OpndIdx))
+    if (Inst2->getOperand(OpndIdx) != Inst1->getOperand(OpndIdx)) // TODO what if they depent on cloned inst?
       return false;
   }
 

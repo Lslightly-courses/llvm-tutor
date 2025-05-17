@@ -63,7 +63,7 @@ Constant *CreateGlobalCounter(Module &M, StringRef GlobalVarName) {
 
   // This will change the declaration into definition (and initialise to 0)
   GlobalVariable *NewGV = M.getNamedGlobal(GlobalVarName);
-  NewGV->setLinkage(GlobalValue::CommonLinkage);
+  NewGV->setLinkage(GlobalValue::CommonLinkage); // Tentative definitions.
   NewGV->setAlignment(MaybeAlign(4));
   NewGV->setInitializer(llvm::ConstantInt::get(CTX, APInt(32, 0)));
 
@@ -103,7 +103,7 @@ bool DynamicCallCounter::runOnModule(Module &M) {
 
     // Inject instruction to increment the call count each time this function
     // executes
-    LoadInst *Load2 = Builder.CreateLoad(IntegerType::getInt32Ty(CTX), Var);
+    LoadInst *Load2 = Builder.CreateLoad(IntegerType::getInt32Ty(CTX), Var); // not thread safe
     Value *Inc2 = Builder.CreateAdd(Builder.getInt32(1), Load2);
     Builder.CreateStore(Inc2, Var);
 

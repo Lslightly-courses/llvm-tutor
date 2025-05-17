@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.20)
 project(llvm-tutor)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 #===============================================================================
 # 1. VERIFY LLVM INSTALLATION DIR
 # This is just a bit of a sanity checking.
@@ -111,6 +113,6 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 # available for the sub-projects.
 #===============================================================================
 add_subdirectory(lib)
-add_subdirectory(tools)
+# add_subdirectory(tools)
 add_subdirectory(test)
 add_subdirectory(HelloWorld)

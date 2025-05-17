@@ -84,7 +84,7 @@ RIV::Result RIV::buildRIV(Function &F, NodeTy CFGRoot) {
     if (Arg.getType()->isIntegerTy())
       EntryBBValues.insert(&Arg);
 
-  // STEP 3: Traverse the CFG for every BB in F calculate its RIVs
+  // STEP 3: Traverse the CFG for every BB in F calculate its RIVs(Dominate Tree Work List)
   while (!BBsToProcess.empty()) {
     auto *Parent = BBsToProcess.back();
     BBsToProcess.pop_back();
